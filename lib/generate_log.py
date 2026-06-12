@@ -16,4 +16,31 @@ def generate_log(data):
 
     # STEP 4: Print a confirmation message with the filename
 
-    pass
+    """
+    Generate a log file with timestamped filename.
+    
+    Args:
+        data (list): List of log entries to write to file
+    
+    Returns:
+        str: The filename that was created
+    
+    Raises:
+        ValueError: If data is not a list
+    """
+    # Check if input is a list
+    if not isinstance(data, list):
+        raise ValueError("data must be a list")
+    
+    # Generate filename with pattern log_YYYYMMDD.txt
+    filename = f"log_{datetime.now().strftime('%Y%m%d')}.txt"
+    
+    # Write to file (works with empty lists too)
+    with open(filename, 'w') as file:
+        for entry in data:
+            file.write(f"{entry}\n")
+    
+    # Print confirmation message including filename
+    print(f"Log written to {filename}")
+    
+    return filename
